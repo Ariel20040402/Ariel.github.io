@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariel's Personal Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4A90D9;
+            --primary-light: #E8F4FD;
+            --primary-dark: #2E5C8A;
+            --secondary-color: #FFB6C1;
+            --accent-color: #FFE4E1;
+            --bg-color: #F8FCFF;
+            --text-color: #333333;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(74, 144, 217, 0.3);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+            float: left;
+        }
+        
+        .nav-links {
+            float: right;
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .menu-toggle {
+            display: none;
+            float: right;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 2rem 60px;
+            background: linear-gradient(180deg, var(--primary-light), var(--bg-color));
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .avatar-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(74, 144, 217, 0.3);
+            overflow: hidden;
+        }
+        
+        .avatar-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .hero .tag {
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Guide Character */
+        .guide-character {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+        
+        .guide-character .character {
+            font-size: 2rem;
+        }
+        
+        .guide-character .speech {
+            background-color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            max-width: 200px;
+            position: relative;
+        }
+        
+        .guide-character .speech::before {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 10px solid var(--white);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        
+        /* Language Learning */
+        .language-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .language-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .language-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(74, 144, 217, 0.25);
+        }
+        
+        .language-card .flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .language-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .language-card .level {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+        
+        .language-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .language-card .view-more {
+            display: block;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .language-card:hover .view-more {
+            opacity: 1;
+        }
+        
+        .language-link {
+            text-decoration: none;
+            display: block;
+        }
+        
+        .lang-code {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-family: 'Arial Black', 'Helvetica Bold', sans-serif;
+        }
+        
+        .lang-code.fr {
+            color: #8B5CF6;
+        }
+        
+        .lang-code.gb {
+            color: #4A90D9;
+        }
+        
+        .lang-code.cn {
+            color: #FF6B6B;
+        }
+        
+        /* French Page Styles */
+        .notes-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .note-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(74, 144, 217, 0.1);
+        }
+        
+        .note-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .note-card .date {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .note-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .admin-bar {
+            background: linear-gradient(135deg, var(--primary-light), var(--white));
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .admin-bar button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        
+        .admin-bar button:hover {
+            background: var(--primary-dark);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+        }
+        
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+        }
+        
+        .modal-content textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+        
+        .modal-actions button {
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .modal-actions .cancel {
+            background: #ddd;
+            color: #333;
+            border: none;
+        }
+        
+        .modal-actions .submit {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+        
+        /* Projects */
+        .project-timeline {
+            position: relative;
+        }
+        
+        .project-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+            transform: translateX(-50%);
+        }
+        
+        .project-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .project-item:nth-child(odd) .project-content {
+            margin-right: calc(50% + 2rem);
+            text-align: right;
+        }
+        
+        .project-item:nth-child(even) .project-content {
+            margin-left: calc(50% + 2rem);
+        }
+        
+        .project-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .project-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .project-item:nth-child(odd) .project-content::before {
+            right: -61px;
+        }
+        
+        .project-item:nth-child(even) .project-content::before {
+            left: -61px;
+        }
+        
+        .project-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-content .date {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Travel */
+        .travel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .travel-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .travel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(74, 144, 217, 0.25);
+        }
+        
+        .travel-card .travel-image {
+            height: 320px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .travel-card .travel-image .view-arrow {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .travel-card:hover .travel-image .view-arrow {
+            opacity: 1;
+        }
+        
+        .view-more-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .view-more-btn {
+            background: linear-gradient(135deg, rgba(74, 144, 217, 0.2), rgba(255, 182, 193, 0.2));
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        
+        .view-more-btn:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            transform: translateX(5px);
+        }
+        
+        .travel-card.hidden {
+            display: none;
+        }
+        
+        .travel-card .travel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .travel-arrow-overlay {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.8rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+        
+        .travel-card:hover .travel-arrow-overlay {
+            opacity: 1;
+        }
+        
+        .travel-arrow-overlay:hover {
+            transform: translateX(5px);
+            color: white;
+        }
+        
+        .image-counter {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .travel-images {
+            display: none;
+        }
+        
+        .travel-card .travel-info {
+            padding: 1.5rem;
+        }
+        
+        .travel-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .travel-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Works */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .work-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(74, 144, 217, 0.25);
+        }
+        
+        .work-card .work-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .work-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .work-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .work-card .view-more {
+            display: block;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .work-card:hover .view-more {
+            opacity: 1;
+        }
+        
+        /* Thoughts */
+        .thoughts-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .thought-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .thought-item .date {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .thought-item p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Message Board */
+        .message-board {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .message-form {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            margin-bottom: 2rem;
+        }
+        
+        .message-form input,
+        .message-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .message-form input:focus,
+        .message-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .message-form button {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .message-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 217, 0.4);
+        }
+        
+        .message-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .message-item {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(74, 144, 217, 0.1);
+        }
+        
+        .message-item .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .message-item .message-name {
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+        
+        .message-item .message-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .message-item p {
+            color: #666;
+        }
+        
+        /* More Section */
+        .more-section {
+            text-align: center;
+        }
+        
+        .more-section .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .project-timeline::before {
+                left: 20px;
+            }
+            
+            .project-item:nth-child(odd) .project-content,
+            .project-item:nth-child(even) .project-content {
+                margin-left: 50px;
+                margin-right: 0;
+                text-align: left;
+            }
+            
+            .project-item:nth-child(odd) .project-content::before,
+            .project-item:nth-child(even) .project-content::before {
+                left: -41px;
+                right: auto;
+            }
+            
+            .guide-character {
+                position: fixed;
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .guide-character .speech {
+                max-width: 150px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🌟 Ariel</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#language">语言学习</a></li>
+                <li><a href="#projects">项目经历</a></li>
+                <li><a href="#travel">探索世界</a></li>
+                <li><a href="#works">个人作品</a></li>
+                <li><a href="#thoughts">碎碎念</a></li>
+                <li><a href="#messages">留言板</a></li>
+                <li><a href="#more">更多</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="avatar-placeholder">
+                <img src="images/首页照片.jpg" alt="Ariel">
+            </div>
+            <h1>成长中的法专生 · Ariel</h1>
+            <p>湖南师范大学外国语言文学专业 | 法语TCF C1 | 雅思7.5 | 自媒体博主</p>
+            <div class="tags">
+                <span class="tag">🌍 语言爱好者</span>
+                <span class="tag">📚 终身学习</span>
+                <span class="tag">🎬 内容创作</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Character -->
+    <div class="guide-character" id="guideCharacter">
+        <div class="character">👧</div>
+        <div class="speech" id="guideSpeech">你好，我是Ariel，欢迎来到我的个人网页！</div>
+    </div>
+
+    <!-- Language Learning -->
+    <section id="language" class="section">
+        <h2 class="section-title">📖 语言学习</h2>
+        <div class="language-cards">
+            <a href="french.html" class="language-card language-link">
+                <div class="lang-code fr">FR</div>
+                <h3>法语学习</h3>
+                <span class="level">TCF C1</span>
+                <p>专业学习四年，热爱法语文化</p>
+                <span class="view-more">查看笔记 →</span>
+            </a>
+            <a href="english.html" class="language-card language-link">
+                <div class="lang-code gb">GB</div>
+                <h3>英文学习</h3>
+                <span class="level">雅思7.5</span>
+                <p>日常交流无障碍，阅读能力优秀</p>
+                <span class="view-more">查看笔记 →</span>
+            </a>
+            <a href="chinese.html" class="language-card language-link">
+                <div class="lang-code cn">CN</div>
+                <h3>中文思考</h3>
+                <span class="level">母语</span>
+                <p>写作表达能力突出</p>
+                <span class="view-more">查看笔记 →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Project Experience -->
+    <section id="projects" class="section">
+        <h2 class="section-title">💼 项目经历</h2>
+        <div class="project-timeline">
+            <div class="project-item">
+                <div class="project-content">
+                    <h3>美团推广通/智选展位产品</h3>
+                    <div class="date">2025.12 - 2026.03</div>
+                    <p><strong>部门</strong>：本地核心商业-商业化增值部<br>
+                    <strong>项目背景</strong>：医美行业夜间咨询量占比28%，客单价较高但商户客服未能承接。<br>
+                    <strong>核心方案</strong>：开发夜间留咨机器人，在推广通页面新增宣传位，按CPS计费。<br>
+                    <strong>技术实现</strong>：采用RAG技术搭建知识库，限制输出80字以内。<br>
+                    <strong>项目结果</strong>：夜间广告收入增长67%，商户ROI提升13.5%。</p>
+                </div>
+            </div>
+            <div class="project-item">
+                <div class="project-content">
+                    <h3>百度AI品专广告（百事通）</h3>
+                    <div class="date">2024.12 - 2025.02</div>
+                    <p><strong>部门</strong>：商业产品部<br>
+                    <strong>项目背景</strong>：传统品专广告投放效率低、效果差、体验不达标。<br>
+                    <strong>核心方案</strong>：引入AIGC驱动创意优选，构建品牌资产库。<br>
+                    <strong>技术实现</strong>：调用百度擎舵生成素材，建立质量打分和排序逻辑。<br>
+                    <strong>项目结果</strong>：点击率+10%，转化率+8%，年覆盖收入3亿元。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel -->
+    <section id="travel" class="section">
+        <h2 class="section-title">🌏 探索世界</h2>
+        <div class="travel-grid">
+            <div class="travel-card" onclick="switchTravelImage(this)">
+                <div class="travel-image">
+                    <img src="images/巴黎1.jpg" alt="巴黎" class="travel-main-image">
+                    <div class="travel-arrow-overlay">→</div>
+                    <div class="image-counter">1/3</div>
+                </div>
+                <div class="travel-info">
+                    <h3>巴黎</h3>
+                    <p>浪漫之都，埃菲尔铁塔、卢浮宫、塞纳河畔...</p>
+                </div>
+                <div class="travel-images" style="display: none;">
+                    <img src="images/巴黎1.jpg" alt="巴黎">
+                    <img src="images/巴黎2.jpg" alt="巴黎">
+                    <img src="images/巴黎3.jpg" alt="巴黎">
+                </div>
+            </div>
+            <div class="travel-card" onclick="switchTravelImage(this)">
+                <div class="travel-image">
+                    <img src="images/尼斯照片1.jpg" alt="尼斯" class="travel-main-image">
+                    <div class="travel-arrow-overlay">→</div>
+                    <div class="image-counter">1/2</div>
+                </div>
+                <div class="travel-info">
+                    <h3>尼斯</h3>
+                    <p>蔚蓝海岸，阳光沙滩，地中海风情</p>
+                </div>
+                <div class="travel-images" style="display: none;">
+                    <img src="images/尼斯照片1.jpg" alt="尼斯">
+                    <img src="images/尼斯照片2.jpg" alt="尼斯">
+                </div>
+            </div>
+            <div class="travel-card" onclick="switchTravelImage(this)">
+                <div class="travel-image">
+                    <img src="images/巴塞罗那1.jpg" alt="巴塞罗那" class="travel-main-image">
+                    <div class="travel-arrow-overlay">→</div>
+                    <div class="image-counter">1/3</div>
+                </div>
+                <div class="travel-info">
+                    <h3>巴塞罗那</h3>
+                    <p>高迪的建筑艺术，地中海畔的热情城市</p>
+                </div>
+                <div class="travel-images" style="display: none;">
+                    <img src="images/巴塞罗那1.jpg" alt="巴塞罗那">
+                    <img src="images/巴塞罗那2.jpg" alt="巴塞罗那">
+                    <img src="images/巴塞罗那3.jpg" alt="巴塞罗那">
+                </div>
+            </div>
+            <div class="travel-card" onclick="switchTravelImage(this)">
+                <div class="travel-image">
+                    <img src="images/意大利照片1.jpg" alt="意大利" class="travel-main-image">
+                    <div class="travel-arrow-overlay">→</div>
+                    <div class="image-counter">1/2</div>
+                </div>
+                <div class="travel-info">
+                    <h3>意大利</h3>
+                    <p>米兰大教堂充满圣经故事，想要天天吃gelato！🍦</p>
+                </div>
+                <div class="travel-images" style="display: none;">
+                    <img src="images/意大利照片1.jpg" alt="意大利">
+                    <img src="images/意大利照片2.jpg" alt="意大利">
+                </div>
+            </div>
+            <div class="travel-card" onclick="switchTravelImage(this)">
+                <div class="travel-image">
+                    <img src="images/摩洛哥照片1.jpg" alt="摩纳哥" class="travel-main-image">
+                    <div class="travel-arrow-overlay">→</div>
+                    <div class="image-counter">1/2</div>
+                </div>
+                <div class="travel-info">
+                    <h3>摩纳哥</h3>
+                    <p>满街豪车，参观摩纳哥王宫，感受奢华之都的魅力</p>
+                </div>
+                <div class="travel-images" style="display: none;">
+                    <img src="images/摩洛哥照片1.jpg" alt="摩纳哥">
+                    <img src="images/摩洛哥照片2.jpg" alt="摩纳哥">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Works -->
+    <section id="works" class="section">
+        <h2 class="section-title">🎨 个人作品</h2>
+        <div class="works-grid">
+            <a href="xiaohongshu.html" class="work-card">
+                <div class="work-icon">📕</div>
+                <h3>小红书笔记</h3>
+                <p>分享生活、学习、旅行的美好点滴</p>
+                <span class="view-more">查看作品 →</span>
+            </a>
+            <a href="handmade.html" class="work-card">
+                <div class="work-icon">🧶</div>
+                <h3>手工作品</h3>
+                <p>DIY手工制作，编织美好时光</p>
+                <span class="view-more">查看作品 →</span>
+            </a>
+            <a href="food.html" class="work-card">
+                <div class="work-icon">🍰</div>
+                <h3>美食</h3>
+                <p>美食探索与烹饪分享</p>
+                <span class="view-more">查看作品 →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Thoughts -->
+    <section id="thoughts" class="section">
+        <h2 class="section-title">💭 Ariel的碎碎念</h2>
+        <div class="thoughts-container">
+            <div class="thought-item">
+                <div class="date">2024年1月15日</div>
+                <p>今天学习了新的法语语法点，过去分词的配合真的很让人头疼呢！不过熟能生巧，继续加油！💪</p>
+            </div>
+            <div class="thought-item">
+                <div class="date">2024年1月10日</div>
+                <p>收到了粉丝的私信，说我的学习笔记帮助到了TA，真的很开心！这就是分享的意义吧~ ❤️</p>
+            </div>
+            <div class="thought-item">
+                <div class="date">2024年1月5日</div>
+                <p>准备开始学习法语歌曲，既能练习发音又能了解法国文化，一举两得！🎶</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Board -->
+    <section id="messages" class="section">
+        <h2 class="section-title">📬 留言板</h2>
+        <div class="message-board">
+            <form class="message-form" id="messageForm">
+                <input type="text" id="nameInput" placeholder="您的名字" required>
+                <textarea id="messageInput" placeholder="留下您想说的话..." rows="4" required></textarea>
+                <button type="submit">发送留言</button>
+            </form>
+            <div class="message-list" id="messageList">
+                <div class="message-item">
+                    <div class="message-header">
+                        <span class="message-name">小明</span>
+                        <span class="message-date">2024年1月14日</span>
+                    </div>
+                    <p>加油！你的法语学习分享真的很有帮助！🎉</p>
+                </div>
+                <div class="message-item">
+                    <div class="message-header">
+                        <span class="message-name">法语爱好者</span>
+                        <span class="message-date">2024年1月13日</span>
+                    </div>
+                    <p>希望能看到更多关于法国文化的内容！😊</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Section -->
+    <section id="more" class="section more-section">
+        <h2 class="section-title">🔗 更多联系</h2>
+        <p>关注我的社交媒体，一起交流学习！</p>
+        <div class="social-links">
+            <a href="#" title="微信"><i class="fab fa-weixin"></i></a>
+            <a href="#" title="微博"><i class="fab fa-weibo"></i></a>
+            <a href="#" title="B站"><i class="fab fa-bilibili"></i></a>
+            <a href="#" title="小红书"><i class="fab fa-instagram"></i></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Ariel's Personal Website. Made with 💙</p>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Message Board
+        const messageForm = document.getElementById('messageForm');
+        const messageList = document.getElementById('messageList');
+
+        messageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('nameInput').value;
+            const message = document.getElementById('messageInput').value;
+            
+            const newMessage = document.createElement('div');
+            newMessage.className = 'message-item';
+            newMessage.innerHTML = `
+                <div class="message-header">
+                    <span class="message-name">${name}</span>
+                    <span class="message-date">${new Date().toLocaleDateString('zh-CN')}</span>
+                </div>
+                <p>${message}</p>
+            `;
+            
+            messageList.insertBefore(newMessage, messageList.firstChild);
+            
+            // Clear form
+            document.getElementById('nameInput').value = '';
+            document.getElementById('messageInput').value = '';
+        });
+
+        // Guide Character
+        const guideCharacter = document.getElementById('guideCharacter');
+        const guideSpeech = document.getElementById('guideSpeech');
+        
+        const messages = [
+            '你好，我是Ariel，欢迎来到我的个人网页！',
+            '点击导航栏可以浏览不同板块哦~',
+            '记得在留言板给我留言呀！',
+            '谢谢你的访问，祝你学习进步！'
+        ];
+        
+        let messageIndex = 0;
+        
+        guideCharacter.addEventListener('click', function() {
+            messageIndex = (messageIndex + 1) % messages.length;
+            guideSpeech.textContent = messages[messageIndex];
+        });
+
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.section');
+        
+        function checkVisibility() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight * 0.85 && elementBottom > 0) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkVisibility);
+        checkVisibility();
+
+        // Travel Image Switch
+        function switchTravelImage(card) {
+            const travelImagesContainer = card.querySelector('.travel-images');
+            const mainImage = card.querySelector('.travel-main-image');
+            const imageCounter = card.querySelector('.image-counter');
+            
+            if (!travelImagesContainer) return;
+            
+            const images = travelImagesContainer.querySelectorAll('img');
+            if (images.length <= 1) return;
+            
+            const currentSrc = mainImage.src;
+            let currentIndex = 0;
+            
+            images.forEach((img, index) => {
+                if (img.src === currentSrc) {
+                    currentIndex = index;
+                }
+            });
+            
+            const nextIndex = (currentIndex + 1) % images.length;
+            mainImage.src = images[nextIndex].src;
+            mainImage.alt = images[nextIndex].alt;
+            imageCounter.textContent = (nextIndex + 1) + '/' + images.length;
+        }
+    </script>
+</body>
+</html>
