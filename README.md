@@ -137,7 +137,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
             padding: 1rem 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(74, 144, 217, 0.3);
@@ -193,7 +193,7 @@
         .hero {
             width: 100%;
             padding: 100px 2rem 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            background: var(--bg-color);
             text-align: center;
             border: none;
         }
@@ -208,7 +208,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 8px 20px rgba(74, 144, 217, 0.3);
-            border: 5px solid var(--white);
+            border: 5px solid var(--primary-light);
             overflow: hidden;
         }
 
@@ -221,15 +221,14 @@
 
         .hero h1 {
             font-size: 2.5rem;
-            color: var(--white);
+            color: var(--primary-dark);
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(46, 92, 138, 0.3);
             border: none;
         }
 
         .hero p {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-color);
             margin-bottom: 1.5rem;
             border: none;
         }
