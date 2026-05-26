@@ -889,7 +889,7 @@
     <!-- 首页 - 房间 -->
     <div id="homePage" class="page active">
         <div class="room-hero">
-            <img src="images/房间.jpg" alt="Ariel的房间" class="room-bg" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--cream-1), var(--soft-pink))';">
+            <img src="images/room.jpg" alt="Ariel的房间" class="room-bg" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--cream-1), var(--soft-pink))';">
             
             <div class="room-title">
                 欢迎来到Ariel的房间，试试看点击不同的物件吧~ ✨
