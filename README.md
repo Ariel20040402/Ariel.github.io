@@ -15,65 +15,169 @@
             --text-color: #333333;
             --white: #FFFFFF;
         }
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
         }
-        
+
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            background-color: var(--primary-color);
             padding: 1rem 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(74, 144, 217, 0.3);
         }
-        
+
         .nav-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--white); }
-        
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--white);
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 0.5rem;
+            gap: 1rem;
         }
-        
+
         .nav-links a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            white-space: nowrap;
+            transition: all 0.3s ease;
         }
-        
-        .nav-links a:hover { background-color: rgba(255, 255, 255, 0.2); }
-        .nav-links a.active { background-color: rgba(255, 255, 255, 0.3); }
-        
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
         .menu-toggle { display: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
-        
+
+        .hero {
+            padding: 100px 2rem 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            text-align: center;
+        }
+
+        .avatar-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--white);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(74, 144, 217, 0.3);
+            border: 5px solid var(--white);
+            overflow: hidden;
+        }
+
+        .avatar-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(46, 92, 138, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            background-color: var(--white);
+            color: var(--primary-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(74, 144, 217, 0.2);
+        }
+
+        .guide-character {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            box-shadow: 0 6px 20px rgba(74, 144, 217, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .guide-character .character { font-size: 2rem; }
+
+        .guide-character .speech {
+            background-color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            max-width: 200px;
+            position: relative;
+        }
+
+        .guide-character .speech::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 8px solid var(--white);
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
         .section {
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .section-title {
             font-size: 2rem;
             color: var(--primary-dark);
@@ -81,316 +185,434 @@
             margin-bottom: 3rem;
             position: relative;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 80px;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             border-radius: 2px;
         }
-        
-        .hero {
-            padding: 120px 2rem 60px;
-            background: linear-gradient(180deg, var(--primary-light), var(--bg-color));
-            text-align: center;
+
+        .language-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
-        
-        .avatar-placeholder {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            margin: 0 auto 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(74, 144, 217, 0.3);
-            overflow: hidden;
-        }
-        
-        .avatar-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        
-        .hero h1 { font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; color: #666; margin-bottom: 1.5rem; }
-        
-        .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
-        .tag { background-color: var(--accent-color); color: var(--primary-dark); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; }
-        
-        .guide-character {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 1rem 1.5rem;
-            border-radius: 25px;
-            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            cursor: pointer;
-            z-index: 1000;
-            animation: bounce 2s infinite;
-        }
-        
-        .guide-character .character { font-size: 2rem; }
-        
-        .guide-character .speech {
-            background-color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            color: var(--primary-dark);
-            max-width: 200px;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .language-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        
+
         .language-card {
             background-color: var(--white);
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            box-shadow: 0 4px 15px rgba(74, 144, 217, 0.1);
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
+            border: 2px solid var(--primary-light);
         }
-        
-        .language-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(74, 144, 217, 0.25); }
-        
-        .language-card .flag { font-size: 3rem; margin-bottom: 1rem; }
-        .language-card h3 { color: var(--primary-dark); margin-bottom: 0.5rem; }
-        
-        .level { background-color: var(--primary-light); color: var(--primary-color); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; display: inline-block; margin-bottom: 1rem; }
-        .language-card p { color: #666; font-size: 0.9rem; }
-        
-        .lang-code { font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem; font-family: 'Arial Black', sans-serif; }
+
+        .language-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(74, 144, 217, 0.2);
+        }
+
+        .language-card .flag { font-size: 3.5rem; margin-bottom: 1rem; }
+        .language-card h3 { color: var(--primary-dark); margin-bottom: 0.5rem; font-size: 1.3rem; }
+
+        .level {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: var(--primary-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .language-card p { color: var(--text-color); font-size: 0.95rem; }
+
+        .lang-code {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-family: 'Arial Black', sans-serif;
+        }
+
         .lang-code.fr { color: #8B5CF6; }
         .lang-code.gb { color: #4A90D9; }
         .lang-code.cn { color: #FF6B6B; }
-        
+
         .notes-section {
             margin-top: 2rem;
             padding: 2rem;
-            background: var(--white);
+            background-color: var(--white);
             border-radius: 20px;
             display: none;
+            box-shadow: 0 6px 20px rgba(74, 144, 217, 0.1);
         }
-        
+
         .notes-section.active { display: block; }
-        
-        .notes-section h3 { color: var(--primary-dark); margin-bottom: 1.5rem; font-size: 1.3rem; }
-        
-        .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        
+
+        .notes-section h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
         .note-card {
-            background: var(--bg-color);
-            border-radius: 12px;
+            background-color: var(--primary-light);
+            border-radius: 15px;
             padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(74, 144, 217, 0.1);
             transition: all 0.3s ease;
         }
-        
-        .note-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
-        
+
+        .note-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(74, 144, 217, 0.15);
+        }
+
         .note-card h4 { color: var(--primary-dark); margin-bottom: 0.5rem; font-size: 1.1rem; }
-        .note-card p { color: #666; font-size: 0.9rem; margin-bottom: 0.5rem; }
-        .note-card img { max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 8px; margin: 0.5rem 0; }
-        .note-card .date { font-size: 0.8rem; color: #999; }
-        
+        .note-card p { color: var(--text-color); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .note-card img {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin: 0.5rem 0;
+        }
+        .note-card .date { font-size: 0.85rem; color: var(--primary-color); }
+
         .note-actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
-        .btn-small { padding: 0.4rem 0.8rem; border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
-        .btn-edit { background: var(--primary-light); color: var(--primary-color); }
-        .btn-delete { background: #FFE4E4; color: #E74C3C; }
-        
-        .add-form { background: var(--bg-color); padding: 1.5rem; border-radius: 12px; margin-top: 1rem; }
-        .add-form h4 { color: var(--primary-dark); margin-bottom: 1rem; }
-        
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-delete {
+            background-color: var(--white);
+            color: #FF6B6B;
+            border-color: #FF6B6B;
+        }
+
+        .add-form {
+            background-color: var(--primary-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+        }
+
+        .add-form h4 { color: var(--primary-dark); margin-bottom: 1rem; font-size: 1.1rem; }
+
         .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; margin-bottom: 0.3rem; color: var(--text-color); font-weight: 500; font-size: 0.9rem; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 0.6rem;
-            border: 2px solid #E0E0E0;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            padding: 0.7rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
             font-family: inherit;
+            background-color: var(--white);
+            transition: all 0.3s ease;
         }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.2);
+        }
+
         .form-group textarea { min-height: 80px; resize: vertical; }
-        
+
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: var(--white);
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.8rem;
             border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            border-radius: 15px;
+            font-size: 1rem;
             cursor: pointer;
+            font-weight: 500;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(74, 144, 217, 0.3);
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(74, 144, 217, 0.4); }
-        
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74, 144, 217, 0.4);
+        }
+
         .project-timeline { position: relative; }
+
         .project-timeline::before {
             content: '';
             position: absolute;
             left: 50%;
             top: 0;
             bottom: 0;
-            width: 2px;
+            width: 4px;
             background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
             transform: translateX(-50%);
+            border-radius: 2px;
         }
-        
+
         .project-item { position: relative; margin-bottom: 3rem; display: flex; justify-content: center; }
-        
+
         .project-item:nth-child(odd) .project-content { margin-right: calc(50% + 2rem); text-align: right; }
         .project-item:nth-child(even) .project-content { margin-left: calc(50% + 2rem); }
-        
+
         .project-content {
             background-color: var(--white);
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            box-shadow: 0 4px 15px rgba(74, 144, 217, 0.1);
             max-width: 450px;
+            border: 2px solid var(--primary-light);
+            position: relative;
         }
-        
-        .project-content h3 { color: var(--primary-dark); margin-bottom: 0.5rem; }
-        .project-content .date { color: var(--primary-color); font-size: 0.9rem; margin-bottom: 1rem; }
-        .project-content p { color: #666; font-size: 0.95rem; line-height: 1.7; }
-        
+
+        .project-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid var(--white);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-item:nth-child(odd) .project-content::before { right: -2.5rem; }
+        .project-item:nth-child(even) .project-content::before { left: -2.5rem; }
+
+        .project-content h3 { color: var(--primary-dark); margin-bottom: 0.5rem; font-size: 1.3rem; }
+        .project-content .date {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .project-content p { color: var(--text-color); font-size: 0.95rem; line-height: 1.7; }
+
         .travel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        
+
         .travel-card {
             background-color: var(--white);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            box-shadow: 0 4px 15px rgba(74, 144, 217, 0.1);
             transition: all 0.3s ease;
+            position: relative;
         }
-        
-        .travel-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(74, 144, 217, 0.25); }
-        
+
+        .travel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(74, 144, 217, 0.15);
+        }
+
         .travel-image {
-            height: 280px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            height: 260px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             overflow: hidden;
             position: relative;
         }
-        
+
         .travel-image img { width: 100%; height: 100%; object-fit: cover; }
-        
+
         .image-counter {
             position: absolute;
             left: 10px;
             bottom: 10px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
-        
+
         .travel-arrow-overlay {
             position: absolute;
             right: 12px;
             bottom: 12px;
             cursor: pointer;
             opacity: 0;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.8rem;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+            color: var(--white);
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(46, 92, 138, 0.8);
             transition: all 0.3s ease;
         }
-        
+
         .travel-card:hover .travel-arrow-overlay { opacity: 1; }
-        .travel-arrow-overlay:hover { transform: translateX(5px); color: white; }
-        
+        .travel-arrow-overlay:hover { transform: translateX(5px); }
+
         .travel-info { padding: 1.5rem; }
-        .travel-info h3 { color: var(--primary-dark); margin-bottom: 0.5rem; }
-        .travel-info p { color: #666; font-size: 0.9rem; }
-        
+        .travel-info h3 { color: var(--primary-dark); margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .travel-info p { color: var(--text-color); font-size: 0.95rem; }
+
         .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        
+
         .work-card {
             background-color: var(--white);
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            box-shadow: 0 4px 15px rgba(74, 144, 217, 0.1);
+            border: 2px solid var(--primary-light);
             transition: all 0.3s ease;
             cursor: pointer;
             text-align: center;
         }
-        
-        .work-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(74, 144, 217, 0.25); }
-        .work-card .work-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .work-card h3 { color: var(--primary-dark); margin-bottom: 0.5rem; }
-        .work-card p { color: #666; font-size: 0.9rem; }
-        
+
+        .work-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(74, 144, 217, 0.15);
+        }
+
+        .work-card .work-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+        .work-card h3 { color: var(--primary-dark); margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .work-card p { color: var(--text-color); font-size: 0.95rem; }
+
         .thoughts-container { max-width: 800px; margin: 0 auto; }
-        
+
         .thought-item {
             background-color: var(--white);
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            box-shadow: 0 4px 15px rgba(74, 144, 217, 0.1);
+            border: 2px solid var(--primary-light);
             margin-bottom: 2rem;
+            position: relative;
         }
-        
-        .thought-item .date { color: var(--primary-color); font-size: 0.9rem; margin-bottom: 1rem; }
-        .thought-item p { color: #666; line-height: 1.8; }
-        
-        .add-thought-form { background: var(--white); padding: 2rem; border-radius: 20px; box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15); margin-top: 2rem; }
-        .add-thought-form textarea { width: 100%; padding: 1rem; border: 2px solid var(--primary-light); border-radius: 10px; font-family: inherit; font-size: 1rem; min-height: 100px; resize: vertical; }
-        .add-thought-form textarea:focus { outline: none; border-color: var(--primary-color); }
-        
+
+        .thought-item::before {
+            content: '💬';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 1.8rem;
+        }
+
+        .thought-item .date {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .thought-item p { color: var(--text-color); line-height: 1.8; font-size: 1rem; }
+
+        .add-thought-form {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(74, 144, 217, 0.1);
+            border: 2px solid var(--primary-light);
+            margin-top: 2rem;
+        }
+
+        .add-thought-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 15px;
+            font-family: inherit;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+            background-color: var(--bg-color);
+            transition: all 0.3s ease;
+        }
+
+        .add-thought-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.2);
+        }
+
         .message-board { max-width: 800px; margin: 0 auto; }
-        
+
         .message-form {
             background-color: var(--white);
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(74, 144, 217, 0.15);
+            box-shadow: 0 4px 15px rgba(74, 144, 217, 0.1);
+            border: 2px solid var(--primary-light);
             margin-bottom: 2rem;
         }
-        
+
         .message-form input, .message-form textarea {
             width: 100%;
             padding: 1rem;
             margin-bottom: 1rem;
             border: 2px solid var(--primary-light);
-            border-radius: 10px;
+            border-radius: 15px;
             font-family: inherit;
             font-size: 1rem;
+            background-color: var(--bg-color);
+            transition: all 0.3s ease;
         }
-        
-        .message-form input:focus, .message-form textarea:focus { outline: none; border-color: var(--primary-color); }
-        .message-form button { background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: var(--white); border: none; padding: 1rem 2rem; border-radius: 30px; font-size: 1rem; cursor: pointer; width: 100%; }
-        
+
+        .message-form input:focus, .message-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.2);
+        }
+
+        .message-form button {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(74, 144, 217, 0.3);
+        }
+
         .message-list { display: flex; flex-direction: column; gap: 1.5rem; }
-        
+
         .message-item {
             background-color: var(--white);
             padding: 1.5rem;
             border-radius: 15px;
-            box-shadow: 0 3px 15px rgba(74, 144, 217, 0.1);
+            box-shadow: 0 4px 12px rgba(74, 144, 217, 0.1);
+            border: 2px solid var(--primary-light);
         }
-        
+
         .message-item .message-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
-        .message-item .message-name { font-weight: bold; color: var(--primary-dark); }
-        .message-item .message-date { font-size: 0.8rem; color: #999; }
-        .message-item p { color: #666; }
-        
+        .message-item .message-name { font-weight: bold; color: var(--primary-dark); font-size: 1.1rem; }
+        .message-item .message-date { font-size: 0.85rem; color: var(--primary-color); }
+        .message-item p { color: var(--text-color); font-size: 1rem; }
+
         footer {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: var(--white);
@@ -398,21 +620,48 @@
             padding: 2rem;
             margin-top: 4rem;
         }
-        
-        .empty-state { text-align: center; padding: 3rem 2rem; color: #999; background: var(--bg-color); border-radius: 12px; }
-        .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
-        
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            border-radius: 20px;
+            border: 2px dashed var(--primary-light);
+        }
+
         @media (max-width: 768px) {
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; background-color: var(--primary-color); padding: 1rem; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem;
+            }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
-            
+
             .hero h1 { font-size: 2rem; }
-            
+
             .project-timeline::before { left: 20px; }
-            .project-item:nth-child(odd) .project-content, .project-item:nth-child(even) .project-content { margin-left: 50px; margin-right: 0; text-align: left; }
-            
-            .guide-character { position: fixed; bottom: 1rem; right: 1rem; padding: 0.8rem 1.2rem; }
+            .project-item:nth-child(odd) .project-content,
+            .project-item:nth-child(even) .project-content {
+                margin-left: 50px;
+                margin-right: 0;
+                text-align: left;
+            }
+            .project-item:nth-child(odd) .project-content::before,
+            .project-item:nth-child(even) .project-content::before { left: -2.5rem; }
+
+            .guide-character {
+                position: fixed;
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
             .guide-character .speech { max-width: 150px; font-size: 0.8rem; }
         }
     </style>
@@ -420,20 +669,20 @@
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo">🌟 Ariel</div>
+            <div class="logo">Ariel's World</div>
             <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#language">语言学习</a></li>
-                <li><a href="#projects">项目经历</a></li>
-                <li><a href="#travel">探索世界</a></li>
-                <li><a href="#works">个人作品</a></li>
-                <li><a href="#thoughts">碎碎念</a></li>
-                <li><a href="#messages">留言板</a></li>
+                <li><a href="#home">🏠 首页</a></li>
+                <li><a href="#language">📖 语言学习</a></li>
+                <li><a href="#projects">💼 项目经历</a></li>
+                <li><a href="#travel">🌍 探索世界</a></li>
+                <li><a href="#works">🎨 个人作品</a></li>
+                <li><a href="#thoughts">💭 碎碎念</a></li>
+                <li><a href="#messages">📬 留言板</a></li>
             </ul>
         </div>
     </nav>
-    
+
     <section id="home" class="hero">
         <div class="avatar-placeholder">
             <img src="images/首页照片.jpg" alt="Ariel" onerror="this.style.display='none'; this.parentElement.innerHTML='👩‍🎓';">
@@ -446,12 +695,12 @@
             <span class="tag">🎬 内容创作</span>
         </div>
     </section>
-    
+
     <div class="guide-character">
         <div class="character">👧</div>
         <div class="speech">你好，我是Ariel，欢迎来到我的个人网页！</div>
     </div>
-    
+
     <section id="language" class="section">
         <h2 class="section-title">📖 语言学习</h2>
         <div class="language-cards">
@@ -477,7 +726,7 @@
                 <p>写作表达能力突出</p>
             </div>
         </div>
-        
+
         <div class="notes-section" id="frenchNotes">
             <h3>🇫🇷 法语学习笔记</h3>
             <div class="notes-grid" id="frenchNotesGrid"></div>
@@ -496,7 +745,7 @@
                 </form>
             </div>
         </div>
-        
+
         <div class="notes-section" id="englishNotes">
             <h3>🇬🇧 英语学习笔记</h3>
             <div class="notes-grid" id="englishNotesGrid"></div>
@@ -515,7 +764,7 @@
                 </form>
             </div>
         </div>
-        
+
         <div class="notes-section" id="chineseNotes">
             <h3>🇨🇳 中文思考笔记</h3>
             <div class="notes-grid" id="chineseNotesGrid"></div>
@@ -535,7 +784,7 @@
             </div>
         </div>
     </section>
-    
+
     <section id="projects" class="section">
         <h2 class="section-title">💼 项目经历</h2>
         <div class="project-timeline">
@@ -563,9 +812,9 @@
             </div>
         </div>
     </section>
-    
+
     <section id="travel" class="section">
-        <h2 class="section-title">🌏 探索世界</h2>
+        <h2 class="section-title">🌍 探索世界</h2>
         <div class="travel-grid">
             <div class="travel-card" onclick="switchTravelImage(this)">
                 <div class="travel-image">
@@ -583,7 +832,7 @@
                     <img src="images/巴黎3.jpg" alt="巴黎">
                 </div>
             </div>
-            
+
             <div class="travel-card" onclick="switchTravelImage(this)">
                 <div class="travel-image">
                     <img src="images/尼斯照片1.jpg" alt="尼斯" class="travel-main-image" onerror="this.style.display='none';">
@@ -599,7 +848,7 @@
                     <img src="images/尼斯照片2.jpg" alt="尼斯">
                 </div>
             </div>
-            
+
             <div class="travel-card" onclick="switchTravelImage(this)">
                 <div class="travel-image">
                     <img src="images/巴塞罗那1.jpg" alt="巴塞罗那" class="travel-main-image" onerror="this.style.display='none';">
@@ -616,7 +865,7 @@
                     <img src="images/巴塞罗那3.jpg" alt="巴塞罗那">
                 </div>
             </div>
-            
+
             <div class="travel-card" onclick="switchTravelImage(this)">
                 <div class="travel-image">
                     <img src="images/意大利照片1.jpg" alt="意大利" class="travel-main-image" onerror="this.style.display='none';">
@@ -632,7 +881,7 @@
                     <img src="images/意大利照片2.jpg" alt="意大利">
                 </div>
             </div>
-            
+
             <div class="travel-card" onclick="switchTravelImage(this)">
                 <div class="travel-image">
                     <img src="images/摩洛哥照片1.jpg" alt="摩纳哥" class="travel-main-image" onerror="this.style.display='none';">
@@ -648,7 +897,7 @@
                     <img src="images/摩洛哥照片2.jpg" alt="摩纳哥">
                 </div>
             </div>
-            
+
             <div class="travel-card" onclick="switchTravelImage(this)">
                 <div class="travel-image">
                     <img src="images/图卢兹1.jpg" alt="图卢兹" class="travel-main-image" onerror="this.style.display='none';">
@@ -664,7 +913,7 @@
                     <img src="images/图卢兹2.jpg" alt="图卢兹">
                 </div>
             </div>
-            
+
             <div class="travel-card" onclick="switchTravelImage(this)">
                 <div class="travel-image">
                     <img src="images/比利时1.jpg" alt="比利时" class="travel-main-image" onerror="this.style.display='none';">
@@ -682,286 +931,219 @@
             </div>
         </div>
     </section>
-    
+
     <section id="works" class="section">
         <h2 class="section-title">🎨 个人作品</h2>
         <div class="works-grid">
-            <div class="work-card" onclick="toggleNotes('xiaohongshu')">
+            <div class="work-card" onclick="window.location.href='xiaohongshu.html'">
                 <div class="work-icon">📕</div>
                 <h3>小红书笔记</h3>
-                <p>分享生活、学习、旅行的美好点滴</p>
+                <p>记录法语学习与生活点滴</p>
             </div>
-            <div class="work-card" onclick="toggleNotes('handmade')">
-                <div class="work-icon">🧶</div>
+            <div class="work-card" onclick="window.location.href='handmade.html'">
+                <div class="work-icon">🎨</div>
                 <h3>手工作品</h3>
-                <p>DIY手工制作，编织美好时光</p>
+                <p>创意手工与艺术创作</p>
             </div>
-            <div class="work-card" onclick="toggleNotes('food')">
-                <div class="work-icon">🍰</div>
-                <h3>美食</h3>
-                <p>美食探索与烹饪分享</p>
-            </div>
-        </div>
-        
-        <div class="notes-section" id="xiaohongshuNotes">
-            <h3>📕 小红书笔记</h3>
-            <div class="notes-grid" id="xiaohongshuNotesGrid"></div>
-            <div class="add-form">
-                <h4>➕ 添加新笔记</h4>
-                <form onsubmit="addNote('xiaohongshu'); return false;">
-                    <div class="form-group">
-                        <label>标题</label>
-                        <input type="text" id="xiaohongshuTitle" placeholder="笔记标题" required>
-                    </div>
-                    <div class="form-group">
-                        <label>内容</label>
-                        <textarea id="xiaohongshuContent" placeholder="笔记内容"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>图片URL（可选）</label>
-                        <input type="text" id="xiaohongshuImage" placeholder="图片链接">
-                    </div>
-                    <button type="submit" class="btn-primary">保存</button>
-                </form>
-            </div>
-        </div>
-        
-        <div class="notes-section" id="handmadeNotes">
-            <h3>🧶 手工作品</h3>
-            <div class="notes-grid" id="handmadeNotesGrid"></div>
-            <div class="add-form">
-                <h4>➕ 添加新作品</h4>
-                <form onsubmit="addNote('handmade'); return false;">
-                    <div class="form-group">
-                        <label>标题</label>
-                        <input type="text" id="handmadeTitle" placeholder="作品标题" required>
-                    </div>
-                    <div class="form-group">
-                        <label>描述</label>
-                        <textarea id="handmadeContent" placeholder="作品描述"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>图片URL（可选）</label>
-                        <input type="text" id="handmadeImage" placeholder="图片链接">
-                    </div>
-                    <button type="submit" class="btn-primary">保存</button>
-                </form>
-            </div>
-        </div>
-        
-        <div class="notes-section" id="foodNotes">
-            <h3>🍰 美食分享</h3>
-            <div class="notes-grid" id="foodNotesGrid"></div>
-            <div class="add-form">
-                <h4>➕ 添加美食</h4>
-                <form onsubmit="addNote('food'); return false;">
-                    <div class="form-group">
-                        <label>标题</label>
-                        <input type="text" id="foodTitle" placeholder="美食名称" required>
-                    </div>
-                    <div class="form-group">
-                        <label>描述</label>
-                        <textarea id="foodContent" placeholder="美食描述"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>图片URL（可选）</label>
-                        <input type="text" id="foodImage" placeholder="图片链接">
-                    </div>
-                    <button type="submit" class="btn-primary">保存</button>
-                </form>
+            <div class="work-card" onclick="window.location.href='food.html'">
+                <div class="work-icon">🍳</div>
+                <h3>美食分享</h3>
+                <p>美食探店与烹饪心得</p>
             </div>
         </div>
     </section>
-    
+
     <section id="thoughts" class="section">
         <h2 class="section-title">💭 Ariel的碎碎念</h2>
-        <div class="thoughts-container" id="thoughtsList"></div>
-        
-        <div class="add-thought-form">
-            <form onsubmit="addThought(); return false;">
-                <textarea id="thoughtContent" placeholder="分享你的想法..." required></textarea>
-                <button type="submit" class="btn-primary" style="margin-top: 1rem;">发布</button>
-            </form>
+        <div class="thoughts-container">
+            <div id="thoughtsList"></div>
+            <div class="add-thought-form">
+                <h3>分享你的想法 ✨</h3>
+                <form onsubmit="addThought(); return false;">
+                    <textarea id="newThought" placeholder="在这里写下你的碎碎念..." required></textarea>
+                    <button type="submit" class="btn-primary" style="margin-top: 1rem; width: 100%;">发布</button>
+                </form>
+            </div>
         </div>
     </section>
-    
+
     <section id="messages" class="section">
         <h2 class="section-title">📬 留言板</h2>
         <div class="message-board">
             <div class="message-form">
-                <input type="text" id="messageName" placeholder="您的名字" required>
-                <textarea id="messageContent" placeholder="留下您想说的话..." required></textarea>
-                <button onclick="addMessage()" class="btn-primary">发送留言</button>
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary-dark);">留下你的足迹 ✨</h3>
+                <form onsubmit="addMessage(); return false;">
+                    <input type="text" id="visitorName" placeholder="你的名字" required>
+                    <textarea id="visitorMessage" placeholder="想对我说的话..." required></textarea>
+                    <button type="submit" class="btn-primary">发送留言</button>
+                </form>
             </div>
             <div class="message-list" id="messageList"></div>
         </div>
     </section>
-    
+
     <footer>
-        <p>&copy; 2024 Ariel's Personal Website. Made with 💙</p>
+        <p>Made with 💕 by Ariel | © 2024</p>
     </footer>
-    
+
     <script>
         function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
-        
-        function toggleNotes(type) {
-            const section = document.getElementById(type + 'Notes');
-            section.classList.toggle('active');
-            if (section.classList.contains('active')) {
-                loadNotes(type);
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+
+        function toggleNotes(lang) {
+            const notesSection = document.getElementById(lang + 'Notes');
+            notesSection.classList.toggle('active');
         }
-        
-        function loadNotes(type) {
-            const notes = JSON.parse(localStorage.getItem(type + '_notes')) || [];
-            const grid = document.getElementById(type + 'NotesGrid');
-            
+
+        function addNote(lang) {
+            const title = document.getElementById(lang + 'Title').value;
+            const content = document.getElementById(lang + 'Content').value;
+            if (!title) return;
+
+            const notes = JSON.parse(localStorage.getItem(lang + 'Notes') || '[]');
+            notes.push({
+                title,
+                content,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
+            localStorage.setItem(lang + 'Notes', JSON.stringify(notes));
+
+            document.getElementById(lang + 'Title').value = '';
+            document.getElementById(lang + 'Content').value = '';
+            loadNotes(lang);
+        }
+
+        function loadNotes(lang) {
+            const notes = JSON.parse(localStorage.getItem(lang + 'Notes') || '[]');
+            const grid = document.getElementById(lang + 'NotesGrid');
+
             if (notes.length === 0) {
-                grid.innerHTML = '<div class="empty-state"><i class="fas fa-book"></i><p>暂无笔记，点击下方添加第一篇吧！</p></div>';
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-sticky-note"></i>
+                        <p>还没有笔记哦，快来添加第一篇吧！</p>
+                    </div>
+                `;
                 return;
             }
-            
+
             grid.innerHTML = notes.map((note, index) => `
                 <div class="note-card">
-                    ${note.image ? '<img src="${note.image}" alt="${note.title}" onerror="this.style.display=\'none\';">' : ''}
                     <h4>${note.title}</h4>
-                    ${note.content ? '<p>' + note.content + '</p>' : ''}
-                    <span class="date">${note.date}</span>
+                    <p>${note.content || '暂无内容'}</p>
+                    <div class="date">📅 ${note.date}</div>
                     <div class="note-actions">
-                        <button class="btn-small btn-edit" onclick="editNote('${type}', ${index})">编辑</button>
-                        <button class="btn-small btn-delete" onclick="deleteNote('${type}', ${index})">删除</button>
+                        <button class="btn-small btn-delete" onclick="deleteNote('${lang}', ${index})">←</button>
                     </div>
                 </div>
             `).join('');
         }
-        
-        function addNote(type) {
-            const title = document.getElementById(type + 'Title').value.trim();
-            const content = document.getElementById(type + 'Content').value.trim();
-            const image = document.getElementById(type + 'Image')?.value.trim() || '';
-            
-            if (!title) { alert('请填写标题'); return; }
-            
-            const notes = JSON.parse(localStorage.getItem(type + '_notes')) || [];
-            notes.unshift({ title, content, image, date: new Date().toLocaleDateString('zh-CN') });
-            localStorage.setItem(type + '_notes', JSON.stringify(notes));
-            
-            document.getElementById(type + 'Title').value = '';
-            document.getElementById(type + 'Content').value = '';
-            if (document.getElementById(type + 'Image')) document.getElementById(type + 'Image').value = '';
-            
-            loadNotes(type);
-            alert('保存成功！');
-        }
-        
-        function editNote(type, index) {
-            const notes = JSON.parse(localStorage.getItem(type + '_notes')) || [];
-            const note = notes[index];
-            
-            const newTitle = prompt('修改标题：', note.title);
-            if (newTitle === null) return;
-            const newContent = prompt('修改内容：', note.content);
-            if (newContent === null) return;
-            
-            notes[index] = { ...note, title: newTitle.trim() || note.title, content: newContent.trim() || note.content };
-            localStorage.setItem(type + '_notes', JSON.stringify(notes));
-            loadNotes(type);
-            alert('修改成功！');
-        }
-        
-        function deleteNote(type, index) {
-            if (!confirm('确定要删除吗？')) return;
-            const notes = JSON.parse(localStorage.getItem(type + '_notes')) || [];
+
+        function deleteNote(lang, index) {
+            const notes = JSON.parse(localStorage.getItem(lang + 'Notes') || '[]');
             notes.splice(index, 1);
-            localStorage.setItem(type + '_notes', JSON.stringify(notes));
-            loadNotes(type);
-            alert('已删除！');
+            localStorage.setItem(lang + 'Notes', JSON.stringify(notes));
+            loadNotes(lang);
         }
-        
+
+        function addThought() {
+            const content = document.getElementById('newThought').value;
+            if (!content) return;
+
+            const thoughts = JSON.parse(localStorage.getItem('thoughts') || '[]');
+            thoughts.unshift({
+                content,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
+            localStorage.setItem('thoughts', JSON.stringify(thoughts));
+            document.getElementById('newThought').value = '';
+            loadThoughts();
+        }
+
         function loadThoughts() {
-            const thoughts = JSON.parse(localStorage.getItem('thoughts')) || [
-                { content: '今天学习了新的法语语法点，过去分词的配合真的很让人头疼呢！不过熟能生巧，继续加油！💪', date: '2024年1月15日' },
-                { content: '收到了粉丝的私信，说我的学习笔记帮助到了TA，真的很开心！这就是分享的意义吧~ ❤️', date: '2024年1月10日' },
-                { content: '准备开始学习法语歌曲，既能练习发音又能了解法国文化，一举两得！🎶', date: '2024年1月5日' }
-            ];
-            
-            document.getElementById('thoughtsList').innerHTML = thoughts.map(t => `
+            const thoughts = JSON.parse(localStorage.getItem('thoughts') || '[]');
+            const list = document.getElementById('thoughtsList');
+
+            if (thoughts.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-comment-dots"></i>
+                        <p>还没有碎碎念哦，快来分享你的想法吧！</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = thoughts.map(thought => `
                 <div class="thought-item">
-                    <div class="date">${t.date}</div>
-                    <p>${t.content}</p>
+                    <div class="date">📅 ${thought.date}</div>
+                    <p>${thought.content}</p>
                 </div>
             `).join('');
         }
-        
-        function addThought() {
-            const content = document.getElementById('thoughtContent').value.trim();
-            if (!content) { alert('请输入内容'); return; }
-            
-            const thoughts = JSON.parse(localStorage.getItem('thoughts')) || [];
-            thoughts.unshift({ content, date: new Date().toLocaleDateString('zh-CN') });
-            localStorage.setItem('thoughts', JSON.stringify(thoughts));
-            
-            document.getElementById('thoughtContent').value = '';
-            loadThoughts();
-            alert('发布成功！');
+
+        function addMessage() {
+            const name = document.getElementById('visitorName').value;
+            const message = document.getElementById('visitorMessage').value;
+            if (!name || !message) return;
+
+            const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+            messages.unshift({
+                name,
+                message,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
+            localStorage.setItem('messages', JSON.stringify(messages));
+
+            document.getElementById('visitorName').value = '';
+            document.getElementById('visitorMessage').value = '';
+            loadMessages();
         }
-        
+
         function loadMessages() {
-            const messages = JSON.parse(localStorage.getItem('messages')) || [
-                { name: '小明', content: '加油！你的法语学习分享真的很有帮助！🎉', date: '2024年1月14日' },
-                { name: '法语爱好者', content: '希望能看到更多关于法国文化的内容！😊', date: '2024年1月13日' }
-            ];
-            
-            document.getElementById('messageList').innerHTML = messages.map(m => `
+            const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+            const list = document.getElementById('messageList');
+
+            if (messages.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-envelope-open"></i>
+                        <p>还没有留言哦，快来留下你的足迹吧！</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = messages.map(msg => `
                 <div class="message-item">
                     <div class="message-header">
-                        <span class="message-name">${m.name}</span>
-                        <span class="message-date">${m.date}</span>
+                        <span class="message-name">👤 ${msg.name}</span>
+                        <span class="message-date">📅 ${msg.date}</span>
                     </div>
-                    <p>${m.content}</p>
+                    <p>${msg.message}</p>
                 </div>
             `).join('');
         }
-        
-        function addMessage() {
-            const name = document.getElementById('messageName').value.trim();
-            const content = document.getElementById('messageContent').value.trim();
-            
-            if (!name || !content) { alert('请填写姓名和留言内容'); return; }
-            
-            const messages = JSON.parse(localStorage.getItem('messages')) || [];
-            messages.unshift({ name, content, date: new Date().toLocaleDateString('zh-CN') });
-            localStorage.setItem('messages', JSON.stringify(messages));
-            
-            document.getElementById('messageName').value = '';
-            document.getElementById('messageContent').value = '';
-            loadMessages();
-            alert('留言成功！');
-        }
-        
+
         function switchTravelImage(card) {
-            const images = card.querySelectorAll('.travel-images img');
+            const images = card.querySelector('.travel-images').querySelectorAll('img');
             const mainImg = card.querySelector('.travel-main-image');
             const counter = card.querySelector('.image-counter');
-            
-            if (images.length === 0) return;
-            
-            let currentIndex = 0;
-            for (let i = 0; i < images.length; i++) {
-                if (images[i].src === mainImg.src) {
-                    currentIndex = i;
-                    break;
-                }
+            let current = parseInt(counter.textContent.split('/')[0]);
+
+            if (current >= images.length) {
+                current = 0;
             }
-            
-            currentIndex = (currentIndex + 1) % images.length;
-            mainImg.src = images[currentIndex].src;
-            counter.textContent = (currentIndex + 1) + '/' + images.length;
+
+            mainImg.src = images[current].src;
+            counter.textContent = (current + 1) + '/' + images.length;
         }
-        
+
+        loadNotes('french');
+        loadNotes('english');
+        loadNotes('chinese');
         loadThoughts();
         loadMessages();
     </script>
