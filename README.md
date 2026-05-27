@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -879,10 +878,7 @@
     </style>
 </head>
 <body>
-    <!-- 背景音乐 -->
     <audio id="bgm" src="music.mp3" loop></audio>
-    
-    <!-- 音乐控制按钮 -->
     <div id="musicControl" class="music-control" onclick="toggleMusic()">🔊</div>
     <!-- 加载动画 -->
     <div id="loadingScreen" class="loading-screen">
