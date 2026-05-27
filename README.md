@@ -791,7 +791,7 @@
     </div>
 
     <!-- 背景音乐播放器 -->
-    <audio id="bgmPlayer" src="music.mp3" loop></audio>
+    <audio id="bgmPlayer" src="mmusic.mp3" loop></audio>
     <button id="musicControl" class="music-control" style="display: none;">
         <i id="musicIcon" class="fas fa-volume-up"></i>
     </button>
@@ -800,20 +800,6 @@
     <div id="homePage" class="page active">
         <div class="room-hero">
             <img src="images/room.jpg" alt="Ariel的房间" class="room-bg" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--cream-1), var(--soft-pink))';">
-            <div class="room-effects" aria-hidden="true">
-                <div class="animated-curtains">
-                    <span class="curtain-panel curtain-left"></span>
-                    <span class="curtain-panel curtain-right"></span>
-                </div>
-                <span class="room-breeze"></span>
-                <span class="girl-eyes"></span>
-                <div class="coffee-steam">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <span class="candle-flame"></span>
-            </div>
             
             <div class="room-title">
                 欢迎来到Ariel的房间，试试看点击不同的物件吧~ ✨
