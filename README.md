@@ -879,7 +879,7 @@
 </head>
 <body>
     <!-- 背景音乐 -->
-<audio id="bgm" src="./music.mp3" loop></audio>
+<audio id="bgm" src="./music1.mp3" loop></audio>
     
     <!-- 音乐控制按钮 -->
     <div id="musicControl" class="music-control" onclick="toggleMusic()">🔊</div>
