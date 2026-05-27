@@ -201,33 +201,6 @@
             transform: scale(1.05);
         }
 
-        /* 音乐播放器控制按钮 - 单独喇叭样式 */
-        .music-control {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 48px;
-            height: 48px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-
-        .music-control:hover {
-            transform: scale(1.15);
-        }
-
-        .music-control i {
-            font-size: 1.8rem;
-            color: #FAF4EA;
-            text-shadow: 0 2px 8px rgba(107, 91, 79, 0.3);
-        }
-
         /* 热点区域 */
         .hotspot {
             position: absolute;
@@ -263,7 +236,7 @@
             transform: scale(1.05);
         }
 
-        /* 热点位置 */
+        /* 热点位置 - 这些位置需要根据实际图片调整 */
         #hotspot-notebook { top: 85%; left: 35%; width: 120px; height: 80px; }
         #hotspot-notebook .hotspot-btn { top: -60px; left: 0px; }
 
@@ -758,7 +731,107 @@
             transform: translateX(-5px);
         }
 
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .note-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .note-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+
+        .note-card img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .note-title { font-size: 1.3rem; color: var(--primary-dark); font-weight: 600; }
+
+        .note-content { color: #666; font-size: 0.95rem; margin-bottom: 1rem; }
+        .note-date { font-size: 0.85rem; color: #999; }
+
+        .add-note-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .add-note-section h3 { color: var(--primary-dark); margin-bottom: 1.5rem; font-size: 1.5rem; }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-color); font-weight: 500; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #E0E0E0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+
+        .empty-state { text-align: center; padding: 4rem 2rem; color: #999; }
+        .empty-state i { font-size: 4rem; margin-bottom: 1rem; opacity: 0.5; }
+
+        .btn-xiaohongshu {
+            background: linear-gradient(135deg, #FF2442, #FF6B6B);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+
+        .btn-xiaohongshu:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 36, 66, 0.4);
+        }
+
+        .sub-footer { text-align: center; padding: 2rem; color: #999; margin-top: 3rem; }
+
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+
+            .hero h1 { font-size: 2rem; }
+
             .project-timeline::before { left: 20px; }
             .project-item:nth-child(odd) .project-content,
             .project-item:nth-child(even) .project-content {
@@ -768,6 +841,14 @@
             }
             .project-item:nth-child(odd) .project-content::before,
             .project-item:nth-child(even) .project-content::before { left: -2.5rem; }
+
+            .guide-character {
+                position: fixed;
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            .guide-character .speech { max-width: 150px; font-size: 0.8rem; }
 
             .notes-grid { grid-template-columns: 1fr; }
         }
@@ -790,11 +871,7 @@
         <button id="enterButton" class="enter-button">ENTER</button>
     </div>
 
-    <!-- 背景音乐播放器 -->
-    <audio id="bgmPlayer" src="mmusic.mp3" loop></audio>
-    <button id="musicControl" class="music-control" style="display: none;">
-        <i id="musicIcon" class="fas fa-volume-up"></i>
-    </button>
+
 
     <!-- 首页 - 房间 -->
     <div id="homePage" class="page active">
@@ -1066,9 +1143,8 @@
                 <div class="add-thought-form">
                     <h3>分享你的想法 ✨</h3>
                     <form onsubmit="addThought(event)">
-                        <textarea id="thoughtInput" placeholder="写下你的想法..."></textarea>
-                        <br>
-                        <button type="submit" class="btn-primary">发布</button>
+                        <textarea id="newThought" placeholder="在这里写下你的碎碎念..." required></textarea>
+                        <button type="submit" class="btn-primary" style="margin-top: 1rem; width: 100%;">发布</button>
                     </form>
                 </div>
             </div>
@@ -1079,21 +1155,24 @@
         </footer>
     </div>
 
-    <!-- 留言板页面 -->
+    <!-- 留言板页面（从首页移入） -->
     <div id="messagesPage" class="page">
         <div class="sub-page-header">
             <div class="back-to-room" onclick="showPage('home')">← 回到房间</div>
             <h1>📬 留言板</h1>
-            <p class="subtitle">留下你的足迹</p>
+            <p class="subtitle">留下你的足迹吧~</p>
         </div>
         
         <main class="section">
             <div class="message-board">
-                <form class="message-form" id="messageForm">
-                    <input type="text" id="nameInput" placeholder="你的名字" required>
-                    <textarea id="messageInput" placeholder="写下你想说的话..." rows="4" required></textarea>
-                    <button type="submit">发送留言</button>
-                </form>
+                <div class="message-form">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-dark);">留下你的足迹 ✨</h3>
+                    <form onsubmit="addMessage(event)">
+                        <input type="text" id="visitorName" placeholder="你的名字" required>
+                        <textarea id="visitorMessage" placeholder="想对我说的话..." required></textarea>
+                        <button type="submit" class="btn-primary">发送留言</button>
+                    </form>
+                </div>
                 <div class="message-list" id="messageList"></div>
             </div>
         </main>
@@ -1102,157 +1181,103 @@
             Made with 💕 by Ariel | © 2026
         </footer>
     </div>
-
-    <!-- 法语笔记页面 -->
+    <!-- 法语学习页面 -->
     <div id="frenchPage" class="page">
         <div class="sub-page-header">
-            <div class="back-to-room" onclick="showPage('language')">← 返回语言学习</div>
-            <h1>🇫🇷 法语学习笔记</h1>
-            <p class="subtitle">法语TCF C1水平</p>
+            <div class="back-to-room" onclick="showPage('home')">← 回到房间</div>
+            <h1>🇫🇷 法语学习</h1>
+            <p class="subtitle">专业学习四年 | TCF C1 | 热爱法语文化</p>
         </div>
         
         <main class="section">
-            <div id="frenchNotes"></div>
+            <h2 class="section-title">📝 我的法语笔记</h2>
+            
+            <div class="notes-grid" id="frenchNotesGrid"></div>
+            
             <div class="add-note-section">
-                <h3>添加法语笔记 ✏️</h3>
+                <h3>➕ 添加新笔记</h3>
                 <form onsubmit="addFrenchNote(event)">
                     <div class="form-group">
-                        <label for="frenchTitle">标题</label>
-                        <input type="text" id="frenchTitle" placeholder="笔记标题">
+                        <label for="frenchNoteTitle">标题</label>
+                        <input type="text" id="frenchNoteTitle" placeholder="请输入笔记标题" required>
                     </div>
                     <div class="form-group">
-                        <label for="frenchContent">内容</label>
-                        <textarea id="frenchContent" placeholder="笔记内容"></textarea>
+                        <label for="frenchNoteContent">内容</label>
+                        <textarea id="frenchNoteContent" placeholder="请输入笔记内容" required></textarea>
                     </div>
                     <button type="submit" class="btn-primary">保存笔记</button>
                 </form>
             </div>
         </main>
-
+        
         <footer>
             Made with 💕 by Ariel | © 2026
         </footer>
     </div>
 
-    <!-- 英语笔记页面 -->
+    <!-- 英语学习页面 -->
     <div id="englishPage" class="page">
         <div class="sub-page-header">
-            <div class="back-to-room" onclick="showPage('language')">← 返回语言学习</div>
-            <h1>🇬🇧 英语学习笔记</h1>
-            <p class="subtitle">雅思7.5</p>
+            <div class="back-to-room" onclick="showPage('home')">← 回到房间</div>
+            <h1>🇬🇧 英语学习</h1>
+            <p class="subtitle">日常交流无障碍 | 阅读能力优秀</p>
         </div>
         
         <main class="section">
-            <div id="englishNotes"></div>
+            <h2 class="section-title">📝 我的英语笔记</h2>
+            
+            <div class="notes-grid" id="englishNotesGrid"></div>
+            
             <div class="add-note-section">
-                <h3>添加英语笔记 ✏️</h3>
+                <h3>➕ 添加新笔记</h3>
                 <form onsubmit="addEnglishNote(event)">
                     <div class="form-group">
-                        <label for="englishTitle">标题</label>
-                        <input type="text" id="englishTitle" placeholder="笔记标题">
+                        <label for="englishNoteTitle">标题</label>
+                        <input type="text" id="englishNoteTitle" placeholder="请输入笔记标题" required>
                     </div>
                     <div class="form-group">
-                        <label for="englishContent">内容</label>
-                        <textarea id="englishContent" placeholder="笔记内容"></textarea>
+                        <label for="englishNoteContent">内容</label>
+                        <textarea id="englishNoteContent" placeholder="请输入笔记内容" required></textarea>
                     </div>
                     <button type="submit" class="btn-primary">保存笔记</button>
                 </form>
             </div>
         </main>
-
+        
         <footer>
             Made with 💕 by Ariel | © 2026
         </footer>
     </div>
 
-    <!-- 中文笔记页面 -->
+    <!-- 中文思考页面 -->
     <div id="chinesePage" class="page">
         <div class="sub-page-header">
-            <div class="back-to-room" onclick="showPage('language')">← 返回语言学习</div>
-            <h1>🇨🇳 中文思考笔记</h1>
-            <p class="subtitle">母语水平</p>
+            <div class="back-to-room" onclick="showPage('home')">← 回到房间</div>
+            <h1>🇨🇳 中文思考</h1>
+            <p class="subtitle">母语 | 写作表达能力突出</p>
         </div>
         
         <main class="section">
-            <div id="chineseNotes"></div>
+            <h2 class="section-title">📝 我的中文笔记</h2>
+            
+            <div class="notes-grid" id="chineseNotesGrid"></div>
+            
             <div class="add-note-section">
-                <h3>添加中文笔记 ✏️</h3>
+                <h3>➕ 添加新笔记</h3>
                 <form onsubmit="addChineseNote(event)">
                     <div class="form-group">
-                        <label for="chineseTitle">标题</label>
-                        <input type="text" id="chineseTitle" placeholder="笔记标题">
+                        <label for="chineseNoteTitle">标题</label>
+                        <input type="text" id="chineseNoteTitle" placeholder="请输入笔记标题" required>
                     </div>
                     <div class="form-group">
-                        <label for="chineseContent">内容</label>
-                        <textarea id="chineseContent" placeholder="笔记内容"></textarea>
+                        <label for="chineseNoteContent">内容</label>
+                        <textarea id="chineseNoteContent" placeholder="请输入笔记内容" required></textarea>
                     </div>
                     <button type="submit" class="btn-primary">保存笔记</button>
                 </form>
             </div>
         </main>
-
-        <footer>
-            Made with 💕 by Ariel | © 2026
-        </footer>
-    </div>
-
-    <!-- 手工作品页面 -->
-    <div id="handmadePage" class="page">
-        <div class="sub-page-header">
-            <div class="back-to-room" onclick="showPage('home')">← 回到房间</div>
-            <h1>🧶 手工作品</h1>
-            <p class="subtitle">DIY手工制作</p>
-        </div>
         
-        <main class="section">
-            <div id="handmadeNotes"></div>
-            <div class="add-note-section">
-                <h3>分享手工作品 ✏️</h3>
-                <form onsubmit="addHandmadeNote(event)">
-                    <div class="form-group">
-                        <label for="handmadeTitle">作品名称</label>
-                        <input type="text" id="handmadeTitle" placeholder="作品名称">
-                    </div>
-                    <div class="form-group">
-                        <label for="handmadeContent">作品描述</label>
-                        <textarea id="handmadeContent" placeholder="描述你的作品"></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">保存作品</button>
-                </form>
-            </div>
-        </main>
-
-        <footer>
-            Made with 💕 by Ariel | © 2026
-        </footer>
-    </div>
-
-    <!-- 美食分享页面 -->
-    <div id="foodPage" class="page">
-        <div class="sub-page-header">
-            <div class="back-to-room" onclick="showPage('home')">← 回到房间</div>
-            <h1>🍰 美食分享</h1>
-            <p class="subtitle">美食探索与烹饪分享</p>
-        </div>
-        
-        <main class="section">
-            <div id="foodNotes"></div>
-            <div class="add-note-section">
-                <h3>分享美食 ✏️</h3>
-                <form onsubmit="addFoodNote(event)">
-                    <div class="form-group">
-                        <label for="foodTitle">美食名称</label>
-                        <input type="text" id="foodTitle" placeholder="美食名称">
-                    </div>
-                    <div class="form-group">
-                        <label for="foodContent">美食描述</label>
-                        <textarea id="foodContent" placeholder="描述这道美食"></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">保存美食</button>
-                </form>
-            </div>
-        </main>
-
         <footer>
             Made with 💕 by Ariel | © 2026
         </footer>
@@ -1263,48 +1288,120 @@
         <div class="sub-page-header">
             <div class="back-to-room" onclick="showPage('home')">← 回到房间</div>
             <h1>📕 小红书笔记</h1>
-            <p class="subtitle">记录生活点滴</p>
+            <p class="subtitle">记录法语学习与生活点滴</p>
         </div>
         
         <main class="section">
-            <div id="xiaohongshuNotes"></div>
+            <h2 class="section-title">📝 我的笔记</h2>
+            
+            <div class="notes-grid" id="xiaohongshuNotesGrid"></div>
+            
+            <div style="text-align: center;">
+                <a href="https://xhslink.com/m/7A5AjuXwBSB" target="_blank" class="btn-xiaohongshu">📕 去小红书上查看更多</a>
+            </div>
+            
             <div class="add-note-section">
-                <h3>发布小红书笔记 ✏️</h3>
+                <h3>➕ 添加新笔记</h3>
                 <form onsubmit="addXiaohongshuNote(event)">
                     <div class="form-group">
-                        <label for="xiaohongshuTitle">笔记标题</label>
-                        <input type="text" id="xiaohongshuTitle" placeholder="笔记标题">
+                        <label for="xiaohongshuNoteTitle">标题</label>
+                        <input type="text" id="xiaohongshuNoteTitle" placeholder="请输入笔记标题" required>
                     </div>
                     <div class="form-group">
-                        <label for="xiaohongshuContent">笔记内容</label>
-                        <textarea id="xiaohongshuContent" placeholder="写下你的笔记内容"></textarea>
+                        <label for="xiaohongshuNoteContent">内容</label>
+                        <textarea id="xiaohongshuNoteContent" placeholder="请输入笔记内容"></textarea>
                     </div>
-                    <button type="submit" class="btn-xiaohongshu">发布笔记</button>
+                    <div class="form-group">
+                        <label for="xiaohongshuNoteImage">图片URL（可选）</label>
+                        <input type="text" id="xiaohongshuNoteImage" placeholder="请输入图片URL">
+                    </div>
+                    <button type="submit" class="btn-primary">保存笔记</button>
                 </form>
             </div>
         </main>
+        
+        <footer>
+            Made with 💕 by Ariel | © 2026
+        </footer>
+    </div>
 
+    <!-- 手工作品页面 -->
+    <div id="handmadePage" class="page">
+        <div class="sub-page-header">
+            <div class="back-to-room" onclick="showPage('home')">← 回到房间</div>
+            <h1>✂️ 手工作品</h1>
+            <p class="subtitle">创意手工与艺术创作</p>
+        </div>
+        
+        <main class="section">
+            <h2 class="section-title">✂️ 我的手工作品</h2>
+            
+            <div class="notes-grid" id="handmadeNotesGrid"></div>
+            
+            <div class="add-note-section">
+                <h3>➕ 添加新作品</h3>
+                <form onsubmit="addHandmadeNote(event)">
+                    <div class="form-group">
+                        <label for="handmadeNoteTitle">标题</label>
+                        <input type="text" id="handmadeNoteTitle" placeholder="请输入作品标题" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="handmadeNoteContent">内容</label>
+                        <textarea id="handmadeNoteContent" placeholder="请输入作品描述"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="handmadeNoteImage">图片URL（可选）</label>
+                        <input type="text" id="handmadeNoteImage" placeholder="请输入图片URL">
+                    </div>
+                    <button type="submit" class="btn-primary">保存作品</button>
+                </form>
+            </div>
+        </main>
+        
+        <footer>
+            Made with 💕 by Ariel | © 2026
+        </footer>
+    </div>
+
+    <!-- 美食分享页面 -->
+    <div id="foodPage" class="page">
+        <div class="sub-page-header">
+            <div class="back-to-room" onclick="showPage('home')">← 回到房间</div>
+            <h1>🍳 美食分享</h1>
+            <p class="subtitle">美食探店与烹饪心得</p>
+        </div>
+        
+        <main class="section">
+            <h2 class="section-title">🍳 我的美食分享</h2>
+            
+            <div class="notes-grid" id="foodNotesGrid"></div>
+            
+            <div class="add-note-section">
+                <h3>➕ 添加新分享</h3>
+                <form onsubmit="addFoodNote(event)">
+                    <div class="form-group">
+                        <label for="foodNoteTitle">标题</label>
+                        <input type="text" id="foodNoteTitle" placeholder="请输入美食标题" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="foodNoteContent">内容</label>
+                        <textarea id="foodNoteContent" placeholder="请输入美食描述"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="foodNoteImage">图片URL（可选）</label>
+                        <input type="text" id="foodNoteImage" placeholder="请输入图片URL">
+                    </div>
+                    <button type="submit" class="btn-primary">保存分享</button>
+                </form>
+            </div>
+        </main>
+        
         <footer>
             Made with 💕 by Ariel | © 2026
         </footer>
     </div>
 
     <script>
-        // 背景音乐控制
-        const bgmPlayer = document.getElementById('bgmPlayer');
-        const musicControl = document.getElementById('musicControl');
-        const musicIcon = document.getElementById('musicIcon');
-
-        function toggleMusic() {
-            if (bgmPlayer.paused) {
-                bgmPlayer.play();
-                musicIcon.className = 'fas fa-volume-up';
-            } else {
-                bgmPlayer.pause();
-                musicIcon.className = 'fas fa-volume-mute';
-            }
-        }
-
         // 加载动画
         document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.getElementById('loadingScreen');
@@ -1312,34 +1409,28 @@
             const enterButton = document.getElementById('enterButton');
             let progress = 0;
 
+            // 进度条动画 (4秒)
             const loadingInterval = setInterval(() => {
                 progress += 2.5;
                 progressBar.style.width = progress + '%';
                 
                 if (progress >= 100) {
                     clearInterval(loadingInterval);
+                    // 显示ENTER按钮
                     setTimeout(() => {
                         enterButton.classList.add('visible');
                     }, 300);
                 }
             }, 100);
 
+            // 点击ENTER按钮
             enterButton.addEventListener('click', function() {
                 loadingScreen.classList.add('hidden');
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
-                    // 显示音乐控制按钮
-                    musicControl.style.display = 'flex';
-                    // 尝试播放背景音乐
-                    bgmPlayer.play().catch(e => {
-                        console.log('自动播放被阻止，用户需要先交互');
-                    });
                 }, 800);
             });
         });
-
-        // 音乐控制按钮点击
-        musicControl.addEventListener('click', toggleMusic);
 
         // 页面切换
         function showPage(pageName) {
@@ -1349,11 +1440,9 @@
             document.getElementById(pageName + 'Page').classList.add('active');
             window.scrollTo(0, 0);
             
-            // 确保音乐控制按钮始终显示
-            musicControl.style.display = 'flex';
-            
             // 加载对应页面的数据
             if (pageName === 'home') {
+                // 首页不需要加载数据
             } else if (pageName === 'french') {
                 loadFrenchNotes();
             } else if (pageName === 'english') {
@@ -1371,6 +1460,11 @@
             } else if (pageName === 'messages') {
                 loadMessages();
             }
+        }
+
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
 
         // 探索世界图片切换
@@ -1400,6 +1494,7 @@
         // 碎碎念功能
         function loadThoughts() {
             let thoughts = JSON.parse(localStorage.getItem('thoughts'));
+            // 如果localStorage为空或为空数组，使用默认数据
             if (!thoughts || thoughts.length === 0) {
                 thoughts = [
                     { content: '学法语的好处就是感觉英文变亲切了变顺眼了' },
@@ -1407,233 +1502,300 @@
                     { content: '冥冥花正开，飏飏燕新乳。' }
                 ];
             }
+            const list = document.getElementById('thoughtsList');
             
-            const thoughtsList = document.getElementById('thoughtsList');
-            thoughtsList.innerHTML = thoughts.map(thought => `
+            list.innerHTML = thoughts.map((thought, index) => `
                 <div class="thought-item">
                     <p>${thought.content}</p>
                 </div>
             `).join('');
         }
 
-        function addThought(event) {
-            event.preventDefault();
-            const input = document.getElementById('thoughtInput');
-            const content = input.value.trim();
-            
+        function addThought(e) {
+            e.preventDefault();
+            const content = document.getElementById('newThought').value.trim();
             if (!content) return;
             
-            let thoughts = JSON.parse(localStorage.getItem('thoughts')) || [];
-            thoughts.push({ content });
+            const thoughts = JSON.parse(localStorage.getItem('thoughts')) || [];
+            thoughts.unshift({
+                content,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
             localStorage.setItem('thoughts', JSON.stringify(thoughts));
-            
-            const thoughtsList = document.getElementById('thoughtsList');
-            const newThought = document.createElement('div');
-            newThought.className = 'thought-item';
-            newThought.innerHTML = `<p>${content}</p>`;
-            thoughtsList.insertBefore(newThought, thoughtsList.firstChild);
-            
-            input.value = '';
+            document.getElementById('newThought').value = '';
+            loadThoughts();
         }
 
         // 留言板功能
         function loadMessages() {
-            let messages = JSON.parse(localStorage.getItem('messages'));
-            if (!messages || messages.length === 0) {
-                messages = [
-                    { name: '小明', content: '加油！你的法语学习分享真的很有帮助！🎉' },
-                    { name: '法语爱好者', content: '希望能看到更多关于法国文化的内容！😊' }
-                ];
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            const list = document.getElementById('messageList');
+            
+            if (messages.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-envelope"></i>
+                        <p>还没有留言，快来留下第一条吧！</p>
+                    </div>
+                `;
+                return;
             }
             
-            const messageList = document.getElementById('messageList');
-            messageList.innerHTML = messages.map(msg => `
+            list.innerHTML = messages.map((message, index) => `
                 <div class="message-item">
                     <div class="message-header">
-                        <span class="message-name">${msg.name}</span>
+                        <span class="message-name">${message.name}</span>
                     </div>
-                    <p>${msg.content}</p>
+                    <p>${message.message}</p>
                 </div>
             `).join('');
         }
 
-        document.getElementById('messageForm').addEventListener('submit', function(e) {
+        function addMessage(e) {
             e.preventDefault();
+            const name = document.getElementById('visitorName').value.trim();
+            const message = document.getElementById('visitorMessage').value.trim();
             
-            const name = document.getElementById('nameInput').value.trim();
-            const content = document.getElementById('messageInput').value.trim();
+            if (!name || !message) return;
             
-            if (!name || !content) return;
-            
-            let messages = JSON.parse(localStorage.getItem('messages')) || [];
-            messages.push({ name, content });
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.unshift({
+                name,
+                message,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
             localStorage.setItem('messages', JSON.stringify(messages));
-            
-            const messageList = document.getElementById('messageList');
-            const newMessage = document.createElement('div');
-            newMessage.className = 'message-item';
-            newMessage.innerHTML = `
-                <div class="message-header">
-                    <span class="message-name">${name}</span>
-                </div>
-                <p>${content}</p>
-            `;
-            messageList.insertBefore(newMessage, messageList.firstChild);
-            
-            document.getElementById('nameInput').value = '';
-            document.getElementById('messageInput').value = '';
-        });
-
-        // 笔记功能通用函数
-        function loadNotes(storageKey, containerId, defaultNotes) {
-            let notes = JSON.parse(localStorage.getItem(storageKey));
-            if (!notes || notes.length === 0) {
-                notes = defaultNotes;
-            }
-            
-            const container = document.getElementById(containerId);
-            if (notes.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-sticky-note"></i>
-                        <p>暂无笔记，快来添加吧！</p>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = `
-                    <div class="notes-grid">
-                        ${notes.map(note => `
-                            <div class="note-card">
-                                <div class="note-header">
-                                    <div class="note-title">${note.title}</div>
-                                </div>
-                                <div class="note-content">${note.content}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            }
+            document.getElementById('visitorName').value = '';
+            document.getElementById('visitorMessage').value = '';
+            loadMessages();
         }
 
-        function addNote(event, storageKey, titleId, contentId, containerId, defaultNotes) {
-            event.preventDefault();
-            
-            const title = document.getElementById(titleId).value.trim();
-            const content = document.getElementById(contentId).value.trim();
-            
-            if (!title || !content) return;
-            
-            let notes = JSON.parse(localStorage.getItem(storageKey)) || defaultNotes;
-            notes.push({ title, content });
-            localStorage.setItem(storageKey, JSON.stringify(notes));
-            
-            document.getElementById(titleId).value = '';
-            document.getElementById(contentId).value = '';
-            
-            loadNotes(storageKey, containerId, defaultNotes);
-        }
-
-        // 法语笔记
+        // 法语笔记功能
         function loadFrenchNotes() {
-            const defaultNotes = [
-                { title: '法语动词变位', content: '法语动词分为三组，第一组动词以-er结尾，第二组以-ir结尾，第三组是不规则动词...' },
-                { title: 'TCF考试准备', content: 'TCF考试分为听力、语法、阅读三个部分，建议提前三个月准备...' }
-            ];
-            loadNotes('frenchNotes', 'frenchNotes', defaultNotes);
+            const notes = JSON.parse(localStorage.getItem('french_notes')) || [];
+            renderNotes(notes, 'frenchNotesGrid');
         }
 
-        function addFrenchNote(event) {
-            const defaultNotes = [
-                { title: '法语动词变位', content: '法语动词分为三组，第一组动词以-er结尾，第二组以-ir结尾，第三组是不规则动词...' },
-                { title: 'TCF考试准备', content: 'TCF考试分为听力、语法、阅读三个部分，建议提前三个月准备...' }
-            ];
-            addNote(event, 'frenchNotes', 'frenchTitle', 'frenchContent', 'frenchNotes', defaultNotes);
+        function renderNotes(notes, gridId) {
+            const grid = document.getElementById(gridId);
+            
+            if (notes.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-book"></i>
+                        <p>暂无笔记，点击下方添加第一篇吧！</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = notes.map((note, index) => `
+                <div class="note-card">
+                    ${note.image ? '<img src="' + note.image + '" alt="' + note.title + '" onerror="this.style.display=\'none\';">' : ''}
+                    <div class="note-header">
+                        <h3 class="note-title">${note.title}</h3>
+                    </div>
+                    ${note.content ? '<p class="note-content">' + note.content + '</p>' : ''}
+                </div>
+            `).join('');
         }
 
-        // 英语笔记
+        function addFrenchNote(e) {
+            e.preventDefault();
+            const title = document.getElementById('frenchNoteTitle').value.trim();
+            const content = document.getElementById('frenchNoteContent').value.trim();
+            
+            if (!title || !content) {
+                alert('请填写标题和内容');
+                return;
+            }
+            
+            const notes = JSON.parse(localStorage.getItem('french_notes')) || [];
+            notes.unshift({
+                title,
+                content,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
+            localStorage.setItem('french_notes', JSON.stringify(notes));
+            e.target.reset();
+            loadFrenchNotes();
+            alert('笔记保存成功！');
+        }
+
+        // 英语笔记功能
         function loadEnglishNotes() {
-            const defaultNotes = [
-                { title: '雅思备考技巧', content: '雅思听力要注意同义替换，阅读要掌握略读技巧...' },
-                { title: '商务英语', content: '商务邮件要简洁明了，注意正式用语...' }
-            ];
-            loadNotes('englishNotes', 'englishNotes', defaultNotes);
+            const notes = JSON.parse(localStorage.getItem('english_notes')) || [];
+            renderNotes(notes, 'englishNotesGrid');
         }
 
-        function addEnglishNote(event) {
-            const defaultNotes = [
-                { title: '雅思备考技巧', content: '雅思听力要注意同义替换，阅读要掌握略读技巧...' },
-                { title: '商务英语', content: '商务邮件要简洁明了，注意正式用语...' }
-            ];
-            addNote(event, 'englishNotes', 'englishTitle', 'englishContent', 'englishNotes', defaultNotes);
+        function addEnglishNote(e) {
+            e.preventDefault();
+            const title = document.getElementById('englishNoteTitle').value.trim();
+            const content = document.getElementById('englishNoteContent').value.trim();
+            
+            if (!title || !content) {
+                alert('请填写标题和内容');
+                return;
+            }
+            
+            const notes = JSON.parse(localStorage.getItem('english_notes')) || [];
+            notes.unshift({
+                title,
+                content,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
+            localStorage.setItem('english_notes', JSON.stringify(notes));
+            e.target.reset();
+            loadEnglishNotes();
+            alert('笔记保存成功！');
         }
 
-        // 中文笔记
+        // 中文笔记功能
         function loadChineseNotes() {
-            const defaultNotes = [
-                { title: '写作技巧', content: '好的文章要有清晰的结构，开头引人入胜，结尾回味无穷...' },
-                { title: '诗词欣赏', content: '中国古典诗词博大精深，蕴含着丰富的文化内涵...' }
-            ];
-            loadNotes('chineseNotes', 'chineseNotes', defaultNotes);
+            const notes = JSON.parse(localStorage.getItem('chinese_notes')) || [];
+            renderNotes(notes, 'chineseNotesGrid');
         }
 
-        function addChineseNote(event) {
-            const defaultNotes = [
-                { title: '写作技巧', content: '好的文章要有清晰的结构，开头引人入胜，结尾回味无穷...' },
-                { title: '诗词欣赏', content: '中国古典诗词博大精深，蕴含着丰富的文化内涵...' }
-            ];
-            addNote(event, 'chineseNotes', 'chineseTitle', 'chineseContent', 'chineseNotes', defaultNotes);
+        function addChineseNote(e) {
+            e.preventDefault();
+            const title = document.getElementById('chineseNoteTitle').value.trim();
+            const content = document.getElementById('chineseNoteContent').value.trim();
+            
+            if (!title || !content) {
+                alert('请填写标题和内容');
+                return;
+            }
+            
+            const notes = JSON.parse(localStorage.getItem('chinese_notes')) || [];
+            notes.unshift({
+                title,
+                content,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
+            localStorage.setItem('chinese_notes', JSON.stringify(notes));
+            e.target.reset();
+            loadChineseNotes();
+            alert('笔记保存成功！');
         }
 
-        // 手工作品笔记
-        function loadHandmadeNotes() {
-            const defaultNotes = [
-                { title: '钩针编织杯垫', content: '用牛奶棉线钩织的可爱杯垫，简单又实用，适合初学者...' },
-                { title: '羊毛毡小动物', content: '戳戳乐羊毛毡，制作可爱的小动物摆件...' }
-            ];
-            loadNotes('handmadeNotes', 'handmadeNotes', defaultNotes);
-        }
-
-        function addHandmadeNote(event) {
-            const defaultNotes = [
-                { title: '钩针编织杯垫', content: '用牛奶棉线钩织的可爱杯垫，简单又实用，适合初学者...' },
-                { title: '羊毛毡小动物', content: '戳戳乐羊毛毡，制作可爱的小动物摆件...' }
-            ];
-            addNote(event, 'handmadeNotes', 'handmadeTitle', 'handmadeContent', 'handmadeNotes', defaultNotes);
-        }
-
-        // 美食笔记
-        function loadFoodNotes() {
-            const defaultNotes = [
-                { title: '提拉米苏', content: '经典意式甜点，浓郁咖啡与马斯卡彭的完美结合...' },
-                { title: '舒芙蕾', content: '法式云朵般的甜品，口感轻盈细腻...' }
-            ];
-            loadNotes('foodNotes', 'foodNotes', defaultNotes);
-        }
-
-        function addFoodNote(event) {
-            const defaultNotes = [
-                { title: '提拉米苏', content: '经典意式甜点，浓郁咖啡与马斯卡彭的完美结合...' },
-                { title: '舒芙蕾', content: '法式云朵般的甜品，口感轻盈细腻...' }
-            ];
-            addNote(event, 'foodNotes', 'foodTitle', 'foodContent', 'foodNotes', defaultNotes);
-        }
-
-        // 小红书笔记
+        // 小红书笔记功能
         function loadXiaohongshuNotes() {
-            const defaultNotes = [
-                { title: '今日份穿搭', content: '简约风格，舒适又时尚...' },
-                { title: '周末探店', content: '发现一家超棒的咖啡店...' }
-            ];
-            loadNotes('xiaohongshuNotes', 'xiaohongshuNotes', defaultNotes);
+            let notes = JSON.parse(localStorage.getItem('xiaohongshu_notes'));
+            // 如果localStorage为空或为空数组，使用默认数据
+            if (!notes || notes.length === 0) {
+                notes = [
+                    { title: '法专生挑战最近很火的écoute chérie', content: '', image: 'images/法专生挑战最近很火的écoute chérie.jpg' },
+                    { title: '法专生挑战最近很火的napoléon', content: '', image: 'images/法专生挑战最近很火的napoléon.jpg' }
+                ];
+            }
+            renderNotes(notes, 'xiaohongshuNotesGrid');
         }
 
-        function addXiaohongshuNote(event) {
-            const defaultNotes = [
-                { title: '今日份穿搭', content: '简约风格，舒适又时尚...' },
-                { title: '周末探店', content: '发现一家超棒的咖啡店...' }
-            ];
-            addNote(event, 'xiaohongshuNotes', 'xiaohongshuTitle', 'xiaohongshuContent', 'xiaohongshuNotes', defaultNotes);
+        function addXiaohongshuNote(e) {
+            e.preventDefault();
+            const title = document.getElementById('xiaohongshuNoteTitle').value.trim();
+            const content = document.getElementById('xiaohongshuNoteContent').value.trim();
+            const image = document.getElementById('xiaohongshuNoteImage').value.trim();
+            
+            if (!title) {
+                alert('请填写标题');
+                return;
+            }
+            
+            const notes = JSON.parse(localStorage.getItem('xiaohongshu_notes')) || [];
+            notes.unshift({
+                title,
+                content,
+                image,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
+            localStorage.setItem('xiaohongshu_notes', JSON.stringify(notes));
+            e.target.reset();
+            loadXiaohongshuNotes();
+            alert('笔记保存成功！');
         }
+
+        // 手工作品功能
+        function loadHandmadeNotes() {
+            let notes = JSON.parse(localStorage.getItem('handmade_notes'));
+            // 如果localStorage为空或为空数组，使用默认数据
+            if (!notes || notes.length === 0) {
+                notes = [
+                    { title: '香薰蜡烛', content: '', image: 'images/手工作品1.jpg' },
+                    { title: '贝壳包', content: '', image: 'images/手工作品2.jpg' },
+                    { title: '毕业桂冠', content: '', image: 'images/手工作品3.jpg' }
+                ];
+            }
+            renderNotes(notes, 'handmadeNotesGrid');
+        }
+
+        function addHandmadeNote(e) {
+            e.preventDefault();
+            const title = document.getElementById('handmadeNoteTitle').value.trim();
+            const content = document.getElementById('handmadeNoteContent').value.trim();
+            const image = document.getElementById('handmadeNoteImage').value.trim();
+            
+            if (!title) {
+                alert('请填写标题');
+                return;
+            }
+            
+            const notes = JSON.parse(localStorage.getItem('handmade_notes')) || [];
+            notes.unshift({
+                title,
+                content,
+                image,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
+            localStorage.setItem('handmade_notes', JSON.stringify(notes));
+            e.target.reset();
+            loadHandmadeNotes();
+            alert('作品保存成功！');
+        }
+
+        // 美食分享功能
+        function loadFoodNotes() {
+            let notes = JSON.parse(localStorage.getItem('food_notes'));
+            // 如果localStorage为空或为空数组，使用默认数据
+            if (!notes || notes.length === 0) {
+                notes = [
+                    { title: '海鲜汤', content: '', image: 'images/美食分享1.jpg' },
+                    { title: '冰淇淋', content: '', image: 'images/美食分享2.jpg' },
+                    { title: '鹅肝', content: '', image: 'images/美食分享3.jpg' }
+                ];
+            }
+            renderNotes(notes, 'foodNotesGrid');
+        }
+
+        function addFoodNote(e) {
+            e.preventDefault();
+            const title = document.getElementById('foodNoteTitle').value.trim();
+            const content = document.getElementById('foodNoteContent').value.trim();
+            const image = document.getElementById('foodNoteImage').value.trim();
+            
+            if (!title) {
+                alert('请填写标题');
+                return;
+            }
+            
+            const notes = JSON.parse(localStorage.getItem('food_notes')) || [];
+            notes.unshift({
+                title,
+                content,
+                image,
+                date: new Date().toLocaleDateString('zh-CN')
+            });
+            localStorage.setItem('food_notes', JSON.stringify(notes));
+            e.target.reset();
+            loadFoodNotes();
+            alert('分享保存成功！');
+        }
+
+        // 初始化加载
+        document.addEventListener('DOMContentLoaded', function() {
+            loadThoughts();
+            loadMessages();
+        });
     </script>
 </body>
 </html>
