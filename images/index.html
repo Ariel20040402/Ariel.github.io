@@ -791,7 +791,7 @@
     </div>
 
     <!-- 背景音乐播放器 -->
-    <audio id="bgmPlayer" src="花日马林巴.mp3" loop></audio>
+    <audio id="bgmPlayer" src="music.mp3" loop></audio>
     <button id="musicControl" class="music-control" style="display: none;">
         <i id="musicIcon" class="fas fa-volume-up"></i>
     </button>
