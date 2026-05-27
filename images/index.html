@@ -852,9 +852,37 @@
 
             .notes-grid { grid-template-columns: 1fr; }
         }
+
+        /* 音乐控制按钮 */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 2rem;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            filter: grayscale(100%) brightness(1.7) contrast(1.1);
+            transition: all 0.3s ease;
+        }
+
+        .music-control.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
+    <!-- 背景音乐 -->
+    <audio id="bgm" src="music.mp3" loop></audio>
+    
+    <!-- 音乐控制按钮 -->
+    <div id="musicControl" class="music-control" onclick="toggleMusic()">🔊</div>
     <!-- 加载动画 -->
     <div id="loadingScreen" class="loading-screen">
         <h1 class="loading-title">Welcome to Ariel's World</h1>
@@ -1428,8 +1456,62 @@
                 loadingScreen.classList.add('hidden');
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
+                    // 加载动画结束后自动播放音乐
+                    playMusic();
                 }, 800);
             });
+        });
+
+        // 背景音乐控制
+        let bgm = null;
+        let isMusicPlaying = false;
+
+        function initMusic() {
+            bgm = document.getElementById('bgm');
+            if (bgm) {
+                bgm.loop = true;
+                bgm.volume = 0.5;
+            }
+        }
+
+        function playMusic() {
+            if (bgm && !isMusicPlaying) {
+                bgm.play().then(() => {
+                    isMusicPlaying = true;
+                    document.getElementById('musicControl').classList.add('visible');
+                    updateMusicIcon();
+                }).catch(err => {
+                    console.log('音乐播放失败:', err);
+                });
+            }
+        }
+
+        function pauseMusic() {
+            if (bgm && isMusicPlaying) {
+                bgm.pause();
+                isMusicPlaying = false;
+                updateMusicIcon();
+            }
+        }
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                pauseMusic();
+            } else {
+                playMusic();
+            }
+        }
+
+        function updateMusicIcon() {
+            const control = document.getElementById('musicControl');
+            if (control) {
+                control.innerHTML = isMusicPlaying ? '🔊' : '🔇';
+            }
+        }
+
+        // 初始化音乐
+        document.addEventListener('DOMContentLoaded', function() {
+            initMusic();
         });
 
         // 页面切换
