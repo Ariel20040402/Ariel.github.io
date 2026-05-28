@@ -879,7 +879,11 @@
 </head>
 <body>
     <!-- 背景音乐 -->
-<audio id="bgm" src="./testaudio.mp3" loop></audio>
+    <audio id="bgm" loop>
+        <source src="music.mp3" type="audio/mpeg" />
+        <source src="music.ogg" type="audio/ogg" />
+        你的浏览器不支援 audio 标签
+    </audio>
     
     <!-- 音乐控制按钮 -->
     <div id="musicControl" class="music-control" onclick="toggleMusic()">🔊</div>
